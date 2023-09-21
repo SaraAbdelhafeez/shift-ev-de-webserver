@@ -1,0 +1,18 @@
+{
+  "name": "shift-ev-webapp",
+  "version": "1.0.0",
+  "description": "Basic web application for Shift EV DevOps exercise.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "supertest": "^6.3.3"
+  }
+}
