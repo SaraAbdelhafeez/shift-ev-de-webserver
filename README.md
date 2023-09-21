@@ -67,6 +67,32 @@ To deploy the application on AWS, follow these steps:
    - Define a Jenkins pipeline or job to automate the build, test, and deployment process of your Node.js app.
    - Configure the pipeline or job to trigger on every code push and perform necessary steps such as checking the syntax errors, installing the necessary packages, and running tests.
 
+9. Create Launch Configuration: Create a Launch Configuration with the following configuration: 
+   - Instance Type: t2.micro
+   - AMI: Ubuntu
+   - Userdata: install docker and run a container with port 300
+     ```
+      #!/bin/bash
+
+      # Install Docker
+      curl -fsSL https://get.docker.com -o get-docker.sh
+      sudo sh get-docker.sh
+      
+      # Add the current user to the docker group
+      sudo usermod -aG docker $USER
+      
+      # Start Docker service
+      sudo systemctl start docker
+      
+      # Pull the image
+      sudo docker pull saraabdelhafeez/node-app
+      
+      # Run the container
+      sudo docker run -d -p 3000:3000 saraabdelhafeez/node-app
+     ```
+   - Security Group: Allow inbound traffic on port 22 from Jenkins server and port 3000 from the public.
+   - Key Pair: Specify the key pair for SSH access.
+
 9. Create an Auto Scaling Group:
    - Create an Auto Scaling Group with a minimum of 2 and a maximum of 4 instances.
    - Associate two private subnets with availability zones 1a and 1b.
