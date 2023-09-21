@@ -70,7 +70,7 @@ To deploy the application on AWS, follow these steps:
 9. Create Launch Configuration: Create a Launch Configuration with the following configuration: 
    - Instance Type: t2.micro
    - AMI: Ubuntu
-   - Userdata: install docker and run a container with port 300
+   - Userdata: install docker and run a container with port 3000
      ```
       #!/bin/bash
 
